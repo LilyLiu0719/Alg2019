@@ -1,21 +1,19 @@
 #include "maxPlanarSubset.h"
+#include <algorithm>
 
 MPChords::MPChords(string filename){
+    fstream fin(filename.c_str());
+    fin >> n;
     chords = new int[n];
     for(int i=0; i<n;  i++){
         chords[i] = -1;
     }
-    fstream fin(filename);
-    fin >> n;
     int a,b;
     while (fin >> a >> b){
         chords[a] = b;
         chords[b] = a;
     }
     fin.close();
-    cout << n << endl;
-    for(int i=0; i<n; i++) cout << chords[i] << ' ';
-    cout << endl;
     mpnum = new int* [n];
     for(int i=0; i<n; i++) mpnum[i] = new int[n];
     for(int i=0; i<n;  i++){
@@ -30,17 +28,12 @@ MPChords::MPChords(string filename){
             mpcase[i][j] = 0;
         }
     }
-    cout << n << endl;
-    for(int i=0; i<n; i++) cout << chords[i] << ' ';
-    cout << endl;
 }
 
 void MPChords::find_max(int a, int b){
-    cout << "find max (" << a << ", " << b << ")" <<  endl;
-    for(int i=0; i<n; i++) cout << chords[i] << ' ';
-    cout << endl;
+    // cout << "find max (" << a << ", " << b << ")" <<  endl;
     int dia = chords[b];
-    cout << "dia = "  << dia << endl;
+    // cout << "dia = "  << dia << endl;
     if(dia > a && dia < b){
         int c2 = get_mpnum(a, dia-1) + get_mpnum(dia+1, b-1) + 1; // case2
         int c1 = get_mpnum(a, b-1); // case1
@@ -59,7 +52,7 @@ void MPChords::find_max(int a, int b){
 
 void MPChords::write(string filename){
     fstream fout;
-    fout.open(filename,ios::out);
+    fout.open(filename.c_str(), ios::out);
     fout << mpnum[0][n-1] << endl;
     for (int i = 0; i< mpsubchords.size(); i++){
         fout << mpsubchords[i].first  << " " << mpsubchords[i].second << endl;
