@@ -10,7 +10,7 @@ public:
     MPChords(string);
     void find_max(int, int);
     int get_n(){return n;}
-    int get_dia(int);
+    // int get_dia(int);
     int get_mpnum(int i, int j){
         if(i<0 ||  j<0 || i>=n || j>=n) return 0;
         else return mpnum[i][j];
@@ -20,7 +20,7 @@ public:
     void trace(int, int);
     void print();
 private:
-    vector<pair<int,int> > chords;
+    int * chords;
     vector<pair<int,int> > mpsubchords;
     int ** mpnum;
     int ** mpcase;
