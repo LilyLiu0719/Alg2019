@@ -50,12 +50,12 @@ cycleMgr::cycleMgr(string filename){
 
 void cycleMgr::breakcycle(bool type){
     if(type){ // dir
-        // flag = true;
-        // min_edge = new Edge(0, 0, 101);
-        // while(flag)
-        //     flag = false;
-        //     for(int i=0; i<v;i++) visited[i] = 0;
-        //     for(int i=0; i<v; i++) dfs(i, v);
+        flag = true;
+        min_edge = new Edge(0, 0, 101);
+        while(flag)
+            flag = false;
+            for(int i=0; i<v;i++) visited[i] = 0;
+            for(int i=0; i<v; i++) dfs(i, v);
         return;
     }
     else{ //undir
@@ -106,26 +106,26 @@ int cycleMgr::MaxKeyExtract(){
     return max_idx;
 }
 
-// void cycleMgr::dfs(size_t x, size_t pi){
-//     visit(x);
-//     for(int i=0; i<v; i++){
-//         if(adj_list[x][i]!=DUMMY_WEIGHT){ // there is an edge between x->i
-//             cout << "edge " << x << ' ' << i << endl;
-//             if(adj_list[x][i] < min_edge->get_w()){
-//                 min_edge->update(x, i, adj_list[x][i]);
-//                 cout << "update!(" << *min_edge << ")" << endl;
-//             }
-//             if(is_visited(i)){ // cycle detected!
-//                 cout << "cycle detected!" << *min_edge << endl;
-//                 breaking_list.push_back(min_edge);
-//                 adj_list[min_edge->get_u()][min_edge->get_v()] = DUMMY_WEIGHT;
-//                 min_edge = new Edge(0, 0, -101);
-//                 flag = true;
-//             }
-//             else dfs(i, x);
-//         }
-//     }
-// }
+void cycleMgr::dfs(size_t x, size_t pi){
+    visit(x);
+    for(int i=0; i<v; i++){
+        if(adj_list[x][i]!=DUMMY_WEIGHT){ // there is an edge between x->i
+            cout << "edge " << x << ' ' << i << endl;
+            if(adj_list[x][i] < min_edge->get_w()){
+                min_edge->update(x, i, adj_list[x][i]);
+                cout << "update!(" << *min_edge << ")" << endl;
+            }
+            if(is_visited(i)){ // cycle detected!
+                cout << "cycle detected!" << *min_edge << endl;
+                breaking_list.push_back(min_edge);
+                adj_list[min_edge->get_u()][min_edge->get_v()] = DUMMY_WEIGHT;
+                min_edge = new Edge(0, 0, -101);
+                flag = true;
+            }
+            else dfs(i, x);
+        }
+    }
+}
 
 // void cycleMgr::find_cycle(size_t x){
 //     return ;

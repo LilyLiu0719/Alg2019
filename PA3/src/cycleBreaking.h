@@ -33,7 +33,7 @@ public:
     void print_adj() const;
     void print_breaking_list() const;
     void breakcycle(bool );
-    void find_cycle(size_t );
+    // void find_cycle(size_t );
     void dfs(size_t, size_t );
     int MaxKeyExtract();
     void write(string);

@@ -8,7 +8,7 @@ int main(int argc, char* argv[]){
        return 0;
     }
     cycleMgr mycycleMgr(argv[1]);
-    // mycycleMgr.breakcycle(0);
-    // mycycleMgr.print_breaking_list();
-    // mycycleMgr.write(argv[2]);
+    mycycleMgr.breakcycle(0);
+    mycycleMgr.print_breaking_list();
+    mycycleMgr.write(argv[2]);
 }
