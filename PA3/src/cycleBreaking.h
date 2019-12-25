@@ -32,7 +32,7 @@ public:
     bool is_visited(size_t v) const { return visited[v]; }
     void print_adj() const;
     void print_breaking_list() const;
-    void breakcycle(bool );
+    void breakcycle();
     // void find_cycle(size_t );
     void dfs(size_t, size_t );
     int MaxKeyExtract();
@@ -55,9 +55,3 @@ private:
     // bool * blocked;
     // size_t * blocked_map;  
 };
-
-ostream& operator<<(ostream& os, const Edge& e)
-{
-    os << e._u << ' ' << e._v << ' ' << e._w;
-    return os;
-}

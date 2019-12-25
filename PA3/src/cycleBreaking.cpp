@@ -4,6 +4,12 @@
 #define  MIN -2147483648
 #define DUMMY_WEIGHT -101
 
+ostream& operator<<(ostream& os, const Edge& e)
+{
+    os << e._u << ' ' << e._v << ' ' << e._w;
+    return os;
+}
+
 cycleMgr::cycleMgr(string filename){
     fstream fin(filename.c_str());
     int count=0;
@@ -48,14 +54,16 @@ cycleMgr::cycleMgr(string filename){
     // print_adj();
 }
 
-void cycleMgr::breakcycle(bool type){
+void cycleMgr::breakcycle(){
     if(type){ // dir
         flag = true;
         min_edge = new Edge(0, 0, 101);
-        while(flag)
+        while(flag){
+            print_adj();
             flag = false;
             for(int i=0; i<v;i++) visited[i] = 0;
             for(int i=0; i<v; i++) dfs(i, v);
+        }
         return;
     }
     else{ //undir
