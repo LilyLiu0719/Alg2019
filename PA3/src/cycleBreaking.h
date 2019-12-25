@@ -34,7 +34,7 @@ public:
     void print_breaking_list() const;
     void breakcycle(bool );
     void find_cycle(size_t );
-    void dfs_d(size_t, size_t, Edge* );
+    void dfs(size_t, size_t );
     int MaxKeyExtract();
     void write(string);
     
@@ -49,9 +49,11 @@ private:
     int * key;
     size_t * predecessor;
     int cost;
-    vector<size_t> stack;
-    bool * blocked;
-    size_t * blocked_map;  
+    bool flag;
+    Edge *min_edge;
+    // vector<size_t> stack;
+    // bool * blocked;
+    // size_t * blocked_map;  
 };
 
 ostream& operator<<(ostream& os, const Edge& e)
